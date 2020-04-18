@@ -15,7 +15,7 @@ inThisBuild(
 )
 
 val commonSettings = Seq(
-  scalaVersion := "2.13.1",
+  scalaVersion := "2.12.11",
   crossScalaVersions := Seq("2.12.11", "2.13.1"),
   name := "debug-utils",
   libraryDependencies ++= Seq(
