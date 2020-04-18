@@ -26,4 +26,4 @@ val commonSettings = Seq(
 )
 
 val debugUtils =
-  project.in(file(".")).settings(commonSettings).settings(skip in publish := true)
+  project.in(file(".")).settings(name := "debug-utils", commonSettings).settings(skip in publish := true)
