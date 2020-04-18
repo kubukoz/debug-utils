@@ -9,10 +9,13 @@ object DebugUtils {
   def withDesugarImpl[A](c: blackbox.Context)(expr: c.Expr[A], showType: c.Expr[Boolean]): c.Expr[A] = {
     import c.universe._
 
+    val tru = c.Expr(c.typecheck(q"true")).actualType
+    val fols = c.Expr(c.typecheck(q"false")).actualType
+
     val singletonBool: Option[Boolean] = showType.actualType match {
-      case t if t <:< typeOf[true]  => Some(true)
-      case t if t <:< typeOf[false] => Some(false)
-      case _                        => None
+      case t if t <:< tru  => Some(true)
+      case t if t <:< fols => Some(false)
+      case _               => None
     }
 
     val literalBool: Option[Boolean] = showType.tree match {
