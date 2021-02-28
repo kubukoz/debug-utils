@@ -16,7 +16,7 @@ inThisBuild(
   )
 )
 
-ThisBuild / scalaVersion := "3.0.0-M3"
+ThisBuild / scalaVersion := "3.0.0-RC1"
 ThisBuild / crossScalaVersions := Seq(
   "2.12.13",
   "2.13.5",
