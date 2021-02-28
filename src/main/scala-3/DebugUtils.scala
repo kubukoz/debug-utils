@@ -1,7 +1,6 @@
 package com.kubukoz
 
 import scala.quoted._
-import scala.compiletime._
 
 object DebugUtils:
 
