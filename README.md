@@ -28,5 +28,8 @@ def demo = DebugUtils.withDesugar(
     implicitly[ValueOf[42]].value
   )
 )
+
+// The above shows (in Scala 3.x):
+// scala.Predef.println(scala.Predef.implicitly[scala.ValueOf[42]](new scala.ValueOf[42](42)).value)
 ```
 
