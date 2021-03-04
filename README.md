@@ -12,6 +12,8 @@ Published for Scala 2.12, 2.13, 3.0.0-M3 and 3.0.0-RC1.
 
 ## Usage
 
+> Note: There's another library that does a better job at this - see [macrolizer](https://github.com/sirthias/macrolizer)
+
 ### `withDesugar`
 
 Wrapping an expression in `withDesugar` will print its desugared (scala 3: fully elaborated) form at compile time.
