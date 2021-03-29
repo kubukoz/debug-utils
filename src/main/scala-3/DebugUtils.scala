@@ -10,5 +10,5 @@ object DebugUtils:
     import quotes.reflect.given
     import quotes.reflect._
 
-    report.warning(TreePrinter.show(expr.asTerm), expr)
+    report.info(TreePrinter.show(expr.asTerm), expr)
     expr
