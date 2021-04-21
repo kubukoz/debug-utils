@@ -6,14 +6,18 @@ object DebugUtils {
 
   def withDesugar[A](expr: A): A = macro withDesugarDefaultImpl[A]
 
-  def withDesugarDefaultImpl[A](c: blackbox.Context)(expr: c.Expr[A]): c.Expr[A] = {
+  def withDesugarDefaultImpl[A](
+      c: blackbox.Context
+  )(expr: c.Expr[A]): c.Expr[A] = {
     import c.universe._
     withDesugarImpl(c)(expr, c.Expr(c.typecheck(q"false")))
   }
 
   def withDesugar[A](expr: A, showType: Boolean): A = macro withDesugarImpl[A]
 
-  def withDesugarImpl[A](c: blackbox.Context)(expr: c.Expr[A], showType: c.Expr[Boolean]): c.Expr[A] = {
+  def withDesugarImpl[A](
+      c: blackbox.Context
+  )(expr: c.Expr[A], showType: c.Expr[Boolean]): c.Expr[A] = {
     import c.universe._
 
     val tru = c.Expr(c.typecheck(q"true")).actualType
