@@ -5,3 +5,9 @@ def demo = DebugUtils.withDesugar(
     implicitly[ValueOf[42]].value
   )
 )
+
+def enumDemo = DebugUtils.withDesugarIgnore {
+  enum Hello {
+    case Foo(s: String)
+  }
+}
