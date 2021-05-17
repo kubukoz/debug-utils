@@ -16,11 +16,12 @@ inThisBuild(
   )
 )
 
-ThisBuild / scalaVersion := "3.0.0-RC2"
+ThisBuild / scalaVersion := "3.0.0"
 ThisBuild / crossScalaVersions := Seq(
   "2.12.13",
   "2.13.5",
-  "3.0.0-RC2"
+  "3.0.0-RC2",
+  "3.0.0"
 )
 
 val GraalVM11 = "graalvm-ce-java11@20.3.0"
@@ -29,17 +30,27 @@ ThisBuild / githubWorkflowJavaVersions := Seq(GraalVM11)
 
 //sbt-ci-release settings
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
-ThisBuild / githubWorkflowPublishTargetBranches := Seq(RefPredicate.StartsWith(Ref.Branch("master")), RefPredicate.StartsWith(Ref.Tag("v")))
-ThisBuild / githubWorkflowPublishPreamble := Seq(WorkflowStep.Use(UseRef.Public("olafurpg", "setup-gpg", "v3")))
+ThisBuild / githubWorkflowPublishTargetBranches := Seq(
+  RefPredicate.StartsWith(Ref.Branch("master")),
+  RefPredicate.StartsWith(Ref.Tag("v"))
+)
+ThisBuild / githubWorkflowPublishPreamble := Seq(
+  WorkflowStep.Use(UseRef.Public("olafurpg", "setup-gpg", "v3"))
+)
 ThisBuild / githubWorkflowPublish := Seq(WorkflowStep.Sbt(List("ci-release")))
-ThisBuild / githubWorkflowEnv ++= List("PGP_PASSPHRASE", "PGP_SECRET", "SONATYPE_PASSWORD", "SONATYPE_USERNAME").map { envKey =>
+ThisBuild / githubWorkflowEnv ++= List(
+  "PGP_PASSPHRASE",
+  "PGP_SECRET",
+  "SONATYPE_PASSWORD",
+  "SONATYPE_USERNAME"
+).map { envKey =>
   envKey -> s"$${{ secrets.$envKey }}"
 }.toMap
 
 val commonSettings = Seq(
   name := "debug-utils",
   libraryDependencies ++= {
-    if (!isDotty.value)
+    if (scalaVersion.value.startsWith("2."))
       Seq(
         "org.scala-lang" % "scala-reflect" % scalaVersion.value
       )

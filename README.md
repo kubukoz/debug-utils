@@ -8,7 +8,7 @@ Just some utilities for debugging daily development issues in Scala.
 "com.kubukoz" %% "debug-utils" % "1.1.0"
 ```
 
-Published for Scala 2.12, 2.13 and 3.0.0-RC2.
+Published for Scala 2.12, 2.13, 3.0.0-RC2 and 3.0.0.
 
 ## Usage
 
